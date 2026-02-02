@@ -1,0 +1,11 @@
+*~
+cache/
+*.constant
+*.log
+*.random
+.RData
+*.rds
+.Rhistory
+.Rproj.user
+*.trend
+*.zip
