@@ -34,7 +34,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: publish to blog
-        uses: frankhjung/blogspot-publishing@6db8baf890a0ea08f06d6c15ed8d32548201d735
+        uses: frankhjung/blogspot-publishing@main
         with:
           title: "Base Rate Explained"
           source-file: "public/index.html"
