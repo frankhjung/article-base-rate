@@ -34,14 +34,15 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: publish to blog
-        continue-on-error: true
-        uses: frankhjung/blogspot-publishing@main
-        with:
-          title: "Base Rate Explained"
-          source-file: "public/index.html"
-          blog-id: ${{ secrets.BLOGGER_BLOG_ID }}
-          client-id: ${{ secrets.BLOGGER_CLIENT_ID }}
-          client-secret: ${{ secrets.BLOGGER_CLIENT_SECRET }}
-          refresh-token: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
-          labels: "statistics, data science"
+      # Temporarily disabled due to upstream action bug
+      # See: ModuleNotFoundError in blogspot-publishing action
+      # - name: publish to blog
+      #   uses: frankhjung/blogspot-publishing@main
+      #   with:
+      #     title: "Base Rate Explained"
+      #     source-file: "public/index.html"
+      #     blog-id: ${{ secrets.BLOGGER_BLOG_ID }}
+      #     client-id: ${{ secrets.BLOGGER_CLIENT_ID }}
+      #     client-secret: ${{ secrets.BLOGGER_CLIENT_SECRET }}
+      #     refresh-token: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+      #     labels: "statistics, data science"
