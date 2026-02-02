@@ -1,5 +1,4 @@
 ---
-
 name: publish article
 
 on:
@@ -20,7 +19,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-
       - name: shallow checkout
         uses: actions/checkout@v4
         with:
@@ -36,10 +34,10 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: publish to blog
-        uses: frankhjung/blogspot-publishing@main
+        uses: frankhjung/blogspot-publishing@6db8baf890a0ea08f06d6c15ed8d32548201d735
         with:
           title: "Base Rate Explained"
-          source-file: "publix/index.html"
+          source-file: "public/index.html"
           blog-id: ${{ secrets.BLOGGER_BLOG_ID }}
           client-id: ${{ secrets.BLOGGER_CLIENT_ID }}
           client-secret: ${{ secrets.BLOGGER_CLIENT_SECRET }}
