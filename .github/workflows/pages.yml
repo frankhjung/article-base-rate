@@ -34,6 +34,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: publish to blog
+        continue-on-error: true
         uses: frankhjung/blogspot-publishing@main
         with:
           title: "Base Rate Explained"
