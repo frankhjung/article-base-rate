@@ -1,6 +1,6 @@
 ---
-title: 'Base Rate: COVID-19 Hospitalisations'
-author: '[Frank Jung](https://www.linkedin.com/in/frankjung/)'
+title: "Base Rate: COVID-19 Hospitalisations"
+author: "[Frank Jung](https://www.linkedin.com/in/frankjung/)"
 date: '`r format(Sys.time(), format="%d %b %Y")`'
 ---
 
@@ -43,27 +43,35 @@ vaccinated_deaths <- 67
 unvaccinated_deaths <- 21
 ```
 
-Rate of unvaccinated in hospital is:
-
 ```{r unvaccinated-rate}
 unvaccinated_hospitalisation_rate <- unvaccinated_hospitalised / unvaccinated_population
-unvaccinated_hospitalisation_rate
 ```
 
-Rate of vaccinated in hospital is:
+Rate of unvaccinated in hospital is:
+`r round(unvaccinated_hospitalisation_rate, 2)` per 1,000 people.
 
 ```{r vaccinated-rate}
 vaccinated_hospitalisation_rate <- vaccinated_hospitalised / vaccinated_population
-vaccinated_hospitalisation_rate
+```
+
+Rate of vaccinated in hospital is: `r round(vaccinated_hospitalisation_rate, 2)`
+per 1,000 people.
+
+```{r hospitalisation-rate-ratio}
+hospitalisation_rate_ratio <- unvaccinated_hospitalisation_rate / vaccinated_hospitalisation_rate
 ```
 
 ## Understanding the Numbers
 
 The rates reveal a dramatically different picture from the absolute numbers:
 
-- Unvaccinated hospitalisation rate: **`r round(unvaccinated_hospitalisation_rate, 2)`** per 1,000 people
-- Vaccinated hospitalisation rate: **`r round(vaccinated_hospitalisation_rate, 2)`** per 1,000 people
-- **Unvaccinated people are hospitalised at `r round(unvaccinated_hospitalisation_rate / vaccinated_hospitalisation_rate, 1)` times the rate of vaccinated people**
+- Unvaccinated hospitalisation rate:
+  **`r round(unvaccinated_hospitalisation_rate, 2)`** per 1,000 people
+- Vaccinated hospitalisation rate:
+  **`r round(vaccinated_hospitalisation_rate, 2)`** per 1,000 people
+- **Unvaccinated people are hospitalised at
+  `r round(hospitalisation_rate_ratio, 1)`
+  times the rate of vaccinated people**
 
 ```{r visualisation, echo=FALSE, fig.height=5, fig.width=8}
 # Common theme for all visualisations
@@ -145,20 +153,12 @@ The pattern is even more pronounced when we examine death rates:
 ```{r death-rates}
 vaccinated_death_rate <- vaccinated_deaths / vaccinated_population
 unvaccinated_death_rate <- unvaccinated_deaths / unvaccinated_population
-
-cat(
-  "Vaccinated death rate:",
-  round(vaccinated_death_rate, 3), "per 1,000\n"
-)
-cat(
-  "Unvaccinated death rate:",
-  round(unvaccinated_death_rate, 3), "per 1,000\n"
-)
-cat(
-  "Unvaccinated are", round(unvaccinated_death_rate / vaccinated_death_rate, 1),
-  "times more likely to die from COVID-19"
-)
+death_rate_ratio <- unvaccinated_death_rate / vaccinated_death_rate
 ```
+
+- Vaccinated death rate: `r round(vaccinated_death_rate, 3)` per 1,000.
+- Unvaccinated death rate: `r round(unvaccinated_death_rate, 3)` per 1,000.
+- Unvaccinated are `r round(death_rate_ratio, 1)` times more likely to die from COVID-19.
 
 ```{r death-viz, echo=FALSE, fig.height=5, fig.width=8}
 # Death rates comparison
@@ -185,9 +185,10 @@ ggplot(death_data, aes(x = Status, y = Rate, fill = Status)) +
 
 The data clearly demonstrates that vaccination significantly reduces the risk of
 both hospitalisation and death from COVID-19. Unvaccinated individuals are
-hospitalised at approximately **`r round(unvaccinated_hospitalisation_rate / vaccinated_hospitalisation_rate, 1)` times the rate**
+hospitalised at approximately
+**`r round(hospitalisation_rate_ratio, 1)` times the rate**
 of vaccinated individuals, and die at approximately
-**`r round(unvaccinated_death_rate / vaccinated_death_rate, 1)` times the rate**.
+**`r round(death_rate_ratio, 1)` times the rate**.
 
 When evaluating public health statistics, it's essential to:
 

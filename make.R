@@ -19,7 +19,12 @@ if (length(args) == 1) {
   if (endsWith(args[1], "html")) {
     render(
       gsub("html$", "Rmd", args[1]),
-      html_document(css = "files/article.css")
+      html_document(
+        css = "files/article.css",
+        theme = NULL,
+        highlight = NULL,
+        self_contained = TRUE
+      )
     )
   } else if (endsWith(args[1], "pdf")) {
     render(gsub("pdf$", "Rmd", args[1]), pdf_document())
@@ -30,7 +35,12 @@ if (length(args) == 1) {
   output_file <- args[2]
   if (endsWith(output_file, "html")) {
     render(source_file,
-      html_document(css = "files/article.css"),
+      html_document(
+        css = "files/article.css",
+        theme = NULL,
+        highlight = NULL,
+        self_contained = TRUE
+      ),
       output_file = output_file
     )
   } else if (endsWith(output_file, "pdf")) {
